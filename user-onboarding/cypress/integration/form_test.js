@@ -7,7 +7,7 @@ describe("New User Onboarding", () =>{
     const fNameInput = () => cy.get("input[name=first_name]");
     const lNameInput = () => cy.get("input[name=last_name]");
     const emailInput = () => cy.get("input[name=email]");
-    const tosInput = () => cy.get("[type=checkbox], [name=tos]");
+    const tosInput = () => cy.get("input[type=checkbox], input[name=tos]");
     const submitButton = () => cy.get(`button[id="submitButton"]`);
 
     it("sanity check", () =>{
@@ -53,7 +53,7 @@ describe("New User Onboarding", () =>{
             fNameInput().type("Lisa");
             lNameInput().type("DeSpain");
             emailInput().type("ldespain@cox.net");
-            tosInput().should("be.checked");
+            tosInput().check();
             submitButton().should("not.be.disabled");
         })
 

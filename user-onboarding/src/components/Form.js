@@ -12,7 +12,7 @@ const onSubmit = evt => {
 const onChange = evt =>{
     const {name, value, checked, type} = evt.target;
     const valueToUse = type === "checkbox" ? checked: value; 
-    change(name, valueToUse)
+    change(name, valueToUse);
 }
 
 return (
