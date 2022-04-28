@@ -25,34 +25,38 @@ return (
     <div>{errors.email}</div>
     <div>{errors.tos}</div>
 </div>
-<label>First Name</label>
+<label>First Name
     <input 
     value={values.first_name}
     onChange={onChange}
     name="first_name"
     type="text"
     />
-<label>Last Name</label>
+</label>
+<label>Last Name
     <input 
     value={values.last_name}
     onChange={onChange}
     name="last_name"
     type="text"
     />
-<label>Email</label>
+</label>
+<label>Email
     <input 
     value={values.email}
     onChange={onChange}
     name="email"
     type="text"
     />
-<label>Did you read and accept the terms of service?</label>
+</label>
+<label>Did you read and accept the terms of service?
     <input 
     value={values.tos}
     onChange={onChange}
     name="tos"
     type="checkbox"
     />
+</label>
 </form>
     )
 }

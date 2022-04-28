@@ -43,11 +43,11 @@ describe("New User Onboarding", () =>{
             emailInput()
             .should("have.value", "")
             .type("ldespain@cox.net")
-            .should("have.value", "ldespain@cox.net")
+            .should("have.value", "ldespain@cox.net");
             tosInput
-            .should("have.value", false)
+            .should("not.be.checked")
             .check()
-            .should("have.value", true);
+            .should("be.checked");
         })
         it("submit button enables when all the fields are filled out", () =>{
             fNameInput().type("Lisa");
@@ -66,7 +66,7 @@ describe("New User Onboarding", () =>{
             fNameInput().type("Lisa");
             lNameInput().type("DeSpain");
             emailInput().type("ldespain@cox.net");
-            tosInput().click();
+            tosInput().check();
             submitButton().click();
         })
     })

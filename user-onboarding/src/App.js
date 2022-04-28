@@ -6,7 +6,7 @@ import schema from "./components/formSchema";
 import * as yup from "yup";
 import Users from "./components/UserGroup";
 
-const initialUsers = [];
+
   const initialFormValues = {
     first_name: '',
     last_name: '',
@@ -16,9 +16,12 @@ const initialUsers = [];
   const initialFormErrors = {
     first_name: '',
     last_name: '',
-    email: ''
+    email: '',
+    tos: ''
   }
-  const initialDisabled = true;
+  
+const initialUsers = [];
+const initialDisabled = true;
 
 function App() {
   const [user, setUser] = useState(initialUsers);
@@ -29,7 +32,6 @@ function App() {
   const getUser = () =>{
     axios.get("https://reqres.in/api/users")
     .then(res =>{
-      console.log(res.data);
       setUser(res.data);
     })
   }
@@ -46,7 +48,7 @@ function App() {
     yup.reach(schema, name)
     .validate(value)
     .then(() => setFormErrors({...formErrors, [name]: ""}))
-    .catch(err => console.error(err))
+    .catch(err => setFormErrors({...formErrors, [name]:err.errors[0]}));
   }
 
   const inputChange = (name, value) =>{
@@ -83,9 +85,9 @@ useEffect(() =>{
       errors={formErrors}
       />
       {/* {
-        user.map((item, idx) => {
+        user.map(item => {
           return (
-            <Users key={idx} details={item} />
+            <Users key={item.id} details={item} />
           )
         })
       } */}
