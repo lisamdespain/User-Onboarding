@@ -18,7 +18,7 @@ const onChange = evt =>{
 return (
     <form onSubmit={onSubmit}>
 <h2>Add a New User</h2>
-<button disabled = {disabled}>Submit</button>
+<button id="submitButton" disabled = {disabled}>Submit</button>
 <div className="errors">
     <div>{errors.first_name}</div>
     <div>{errors.last_name}</div>
