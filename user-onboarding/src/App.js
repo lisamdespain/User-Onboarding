@@ -24,23 +24,26 @@ const initialUsers = [];
 const initialDisabled = true;
 
 function App() {
-  const [user, setUser] = useState(initialUsers);
+  const [user, setUser] = useState();
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
 
   const getUser = () =>{
+    console.log("Hello from inside get user")
     axios.get("https://reqres.in/api/users")
     .then(res =>{
-      setUser(res.data);
-    })
+      console.log(res.data.data);
+      setUser(res.data.data);
+      
+    }).catch(err => console.log(err))
   }
   
   const postNewUser = newUser =>{
     axios.post("https://reqres.in/api/users", newUser)
     .then(res =>{
       setUser([res.data, ...user]);
-      setFormValues([initialFormValues]);
+      setFormValues(initialFormValues);
     }).catch(err => console.log(err))
   }
 
@@ -66,6 +69,7 @@ function App() {
       postNewUser(newUser);
     }
 useEffect(() =>{
+  console.log("Hello from inside useeffect")
   getUser()
 }, [])
 
@@ -74,6 +78,7 @@ useEffect(() =>{
   .then(valid => setDisabled(!valid))
 }, [formValues])
 
+// console.log(user);
    return (
     <div className="container">
       <h1>New User Sign Up</h1>
@@ -84,15 +89,17 @@ useEffect(() =>{
       disabled={disabled}
       errors={formErrors}
       />
-      {/* {
-        user.map(item => {
+      {
+        user && user.map(item => {
           return (
-            <Users key={item.id} details={item} />
+            <Users key={item.email} details={item} />
           )
         })
-      } */}
+      }
+      
     </div>
   );
+  
 }
 
 export default App;

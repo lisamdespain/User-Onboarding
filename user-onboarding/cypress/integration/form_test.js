@@ -7,9 +7,10 @@ describe("New User Onboarding", () =>{
     const fNameInput = () => cy.get("input[name=first_name]");
     const lNameInput = () => cy.get("input[name=last_name]");
     const emailInput = () => cy.get("input[name=email]");
-    const tosInput = () => cy.get("input[type=checkbox], input[name=tos]");
+    const tosInput = () => cy.get("input[name=tos]");
     const submitButton = () => cy.get(`button[id="submitButton"]`);
-
+    
+    
     it("sanity check", () =>{
         expect(true).to.equal(true);
         expect({}).not.to.equal({});
@@ -44,7 +45,8 @@ describe("New User Onboarding", () =>{
             .should("have.value", "")
             .type("ldespain@cox.net")
             .should("have.value", "ldespain@cox.net");
-            tosInput
+            // cy.get("input[name=tos]")
+            tosInput()
             .should("not.be.checked")
             .check()
             .should("be.checked");
